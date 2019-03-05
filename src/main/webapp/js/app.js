@@ -16,5 +16,13 @@ app.service('EmployeeCRUDService', [ '$http', function($http) {
 			url: 'api/employees/' + employeeId
 		});
 	}
+	
+	this.addEmployee = function addEmployee(firstName, lastName, email){
+        return $http({
+          method: 'POST',
+          url: 'api/employees',
+          data: {firstName:firstame, lastName:lastName, email:email}
+        });
+    }
     
 } ]);
