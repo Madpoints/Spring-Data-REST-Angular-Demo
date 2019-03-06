@@ -24,11 +24,19 @@ app.service('EmployeeCRUDService', [ '$http', function($http) {
         });
     }
 	
-	 this.deleteEmployee = function deleteEmployee(employeeId){
+	this.deleteEmployee = function deleteEmployee(employeeId){
 	        return $http({
 	          method: 'DELETE',
 	          url: 'api/employees/' + employeeId
-	        })
-	    }
+	    });
+	}
     
+	this.updateEmployee = function updateEmployee(employeeId, firstName, lastName, email){
+        return $http({
+          method: 'PUT',
+          url: 'api/employees/' + employeeId,
+          data: {firstName:firstame, lastName:lastName, email:email}
+        })
+    }
+	
 } ]);
