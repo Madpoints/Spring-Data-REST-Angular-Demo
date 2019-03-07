@@ -1,5 +1,9 @@
 var app = angular.module('app', []);
 
+app.controller('EmployeeCRUDCtrl', ['$scope','EmployeeCRUDService', function ($scope, EployeeCRUDService) {
+	
+}]):
+
 app.service('EmployeeCRUDService', [ '$http', function($http) {
 	
 	this.getAllEmployees = function getAllEmployees(){
@@ -25,9 +29,9 @@ app.service('EmployeeCRUDService', [ '$http', function($http) {
     }
 	
 	this.deleteEmployee = function deleteEmployee(employeeId){
-	        return $http({
-	          method: 'DELETE',
-	          url: 'api/employees/' + employeeId
+        return $http({
+          method: 'DELETE',
+          url: 'api/employees/' + employeeId
 	    });
 	}
     
@@ -36,7 +40,7 @@ app.service('EmployeeCRUDService', [ '$http', function($http) {
           method: 'PUT',
           url: 'api/employees/' + employeeId,
           data: {firstName:firstame, lastName:lastName, email:email}
-        })
+        });
     }
 	
 } ]);
