@@ -1,6 +1,19 @@
 var app = angular.module('app', []);
 
-app.controller('EmployeeCRUDCtrl', ['$scope','EmployeeCRUDService', function ($scope, EployeeCRUDService) {
+app.controller('EmployeeCRUDCtrl', ['$scope','EmployeeCRUDService', function ($scope, EmployeeCRUDService) {
+	
+	$scope.getAllEmployees = function () {
+        EmployeeCRUDService.getAllEmployees()
+          .then(function success(response){
+              $scope.employees = response.data._embedded.employees;
+              $scope.message='';
+              $scope.errorMessage = '';
+          },
+          function error (response ){
+              $scope.message='';
+              $scope.errorMessage = 'Error getting employees!';
+          });
+    }
 	
 }]):
 
