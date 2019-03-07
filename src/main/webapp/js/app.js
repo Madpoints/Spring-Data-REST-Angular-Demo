@@ -15,6 +15,26 @@ app.controller('EmployeeCRUDCtrl', ['$scope','EmployeeCRUDService', function ($s
           });
     }
 	
+	$scope.getEmployee = function () {
+        var id = $scope.employee.id;
+        EmployeeCRUDService.getEmployee($scope.employee.id)
+          .then(function success(response){
+              $scope.employee = response.data;
+              $scope.employee.id = id;
+              $scope.message='';
+              $scope.errorMessage = '';
+          },
+          function error (response ){
+              $scope.message = '';
+              if (response.status === 404){
+                  $scope.errorMessage = 'Employee not found!';
+              }
+              else {
+                  $scope.errorMessage = "Error getting employee!";
+              }
+          });
+    }
+	
 }]):
 
 app.service('EmployeeCRUDService', [ '$http', function($http) {
