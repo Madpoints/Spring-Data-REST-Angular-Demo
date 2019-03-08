@@ -35,6 +35,24 @@ app.controller('EmployeeCRUDCtrl', ['$scope','EmployeeCRUDService', function ($s
           });
     }
 	
+	$scope.addEmployee = function () {
+        if ($scope.employee != null && $scope.employee.firstName) {
+            EmployeeCRUDService.addEmployee($scope.employee.firstName, $scope.employee.lastName, $scope.employee.email)
+              .then (function success(response){
+                  $scope.message = 'Employee added!';
+                  $scope.errorMessage = '';
+              },
+              function error(response){
+                  $scope.errorMessage = 'Error adding employee!';
+                  $scope.message = '';
+            });
+        }
+        else {
+            $scope.errorMessage = 'Please enter a name!';
+            $scope.message = '';
+        }
+    }
+	
 }]):
 
 app.service('EmployeeCRUDService', [ '$http', function($http) {
