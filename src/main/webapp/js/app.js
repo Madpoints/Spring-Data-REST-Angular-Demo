@@ -66,6 +66,18 @@ app.controller('EmployeeCRUDCtrl', ['$scope','EmployeeCRUDService', function ($s
           })
     }
 	
+	$scope.updateEmployee = function () {
+        EmployeeCRUDService.updateEmployee($scope.employee.id, $scope.employee.firstName, $scope.employee.lastName, $scope.employee.email)
+          .then(function success(response){
+              $scope.message = 'Employee data updated!';
+              $scope.errorMessage = '';
+          },
+          function error(response){
+              $scope.errorMessage = 'Error updating employee!';
+              $scope.message = '';
+          });
+    }
+	
 }]):
 
 app.service('EmployeeCRUDService', [ '$http', function($http) {
