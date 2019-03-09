@@ -53,6 +53,19 @@ app.controller('EmployeeCRUDCtrl', ['$scope','EmployeeCRUDService', function ($s
         }
     }
 	
+	$scope.deleteEmployee = function () {
+        EmployeeCRUDService.deleteEmployee($scope.employee.id)
+          .then (function success(response){
+              $scope.message = 'Employee deleted!';
+              $scope.employee = null;
+              $scope.errorMessage='';
+          },
+          function error(response){
+              $scope.errorMessage = 'Error deleting employee!';
+              $scope.message='';
+          })
+    }
+	
 }]):
 
 app.service('EmployeeCRUDService', [ '$http', function($http) {
