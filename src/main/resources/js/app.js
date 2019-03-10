@@ -78,7 +78,7 @@ app.controller('EmployeeCRUDCtrl', ['$scope','EmployeeCRUDService', function ($s
           });
     }
 	
-}]):
+}]);
 
 app.service('EmployeeCRUDService', [ '$http', function($http) {
 	
